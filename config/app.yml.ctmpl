@@ -1,0 +1,112 @@
+flask:
+    api_version: {{key "ms_item/flask/api_version"}}
+    debug: {{key "ms_item/flask/debug"}}
+
+aws:
+    access_key: {{key "aws/access_key"}}
+    secret_access_key: "aws/secret_access_key"}}
+    region: {{key "aws/region"}}
+
+sqs:
+    retry_limit: {{key "sqs/retry_limit"}}
+    queue_name: {{key "sqs/queue_name"}}
+
+sns:
+    retry_limit: {{key "sns/retry_limit"}}
+    topic_name: {{key "sns/topic_name"}}
+
+service:
+    max_attempts: {{key "service/max_attempts"}}
+
+cql:
+    local_env: {{key "cassandra/local_env"}}
+    hosts: {{key "cassandra/hosts"}}
+    port: {{key "cassandra/port"}}
+    keyspace: {{key "ms_item/cql/keyspace"}}
+    table: {{key "ms_item/cql/table"}}
+    timeout: {{key "cassandra/timeout"}}
+
+es:
+    local_env: {{key "elasticsearch/local_env"}}
+    host: {{key "elasticsearch/host"}}
+    port: {{key "elasticsearch/port"}}
+    index_name: {{key "ms_item/es/index_name"}}
+    doc_type: {{key "ms_item/es/doc_type"}}
+    timeout: {{key "elasticsearch/timeout"}}
+    limit: {{key "ms_item/es/limit"}}
+    offset: {{key "ms_item/es/offset"}}
+    settings:
+        index:
+            number_of_shards: {{key "ms_item/es/settings/index/shards"}}
+            number_of_replicas: {{key "ms_item/es/settings/index/replicas"}}
+    index_mappings:
+        mappings:
+            properties:
+                item_id:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/item_id/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/item_id/index"}}
+                name:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/name/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/name/index"}}
+                description:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/description/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/description/index"}}
+                sku:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/sku/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/sku/index"}}
+                cost:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/cost/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/cost/index"}}
+                price:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/price/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/price/index"}}
+                quantity:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/quantity/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/quantity/index"}}
+                added:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/added/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/added/index"}}
+                removed:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/removed/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/removed/index"}}
+                deleted:
+                    type: {{key "ms_item/es/index_mappings/mappings/properties/deleted/type"}}
+                    index: {{key "ms_item/es/index_mappings/mappings/properties/deleted/index"}}
+
+log_level: DEBUG
+logging:
+    version: 1
+    disable_existing_loggers: False
+    formatters:
+        verbose:
+            # these two are problematic when read from Consul Agent
+            format: "[%(asctime)s:%(levelname)s %(name)s::%(funcName)s(%(lineno)s)] %(message)s"
+            datefmt: "%Y-%m-%d %H:%M:%S"
+    handlers:
+        console:
+            level: DEBUG
+            class: logging.StreamHandler
+            formatter: verbose
+        logfile:
+            level: DEBUG
+            #class: logging.handlers.TimedRotatingFileHandler
+            filename: /logs/app.log
+            formatter: verbose
+            #when: midnight
+            backupCount: 2
+            encoding: UTF8
+            class: logging.handlers.RotatingFileHandler
+            maxBytes: 4000000                                                                                              
+    loggers:
+        ms_item:
+            handlers:
+                - console
+                - logfile
+            level: DEBUG
+            propogate: True
+        __main__:
+            handlers:
+                - console
+                - logfile
+            level: DEBUG
+            propogate: True
