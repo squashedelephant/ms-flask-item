@@ -1,0 +1,19 @@
+
+Test philosophy
+in the docker container world, tests are executed after the service has already started.
+the existence of a service requires tests to confirm
+1) service accepts REST inputs via API
+2) service behaves well when dependent services go offline
+3) service returns REST outputs via API
+4) service packages errors when problems occur
+
+because service is already active, testing the ability to start fails if a shared
+resource is accessed twice due to a locking condition so service must allow
+start without shared resource.  test then starts service without shared resource
+but also tests shared resource separately.
+
+Execution strategy
+1) $ client/start.py -i
+2) $ docker exec -it services_ms-item_1 bash
+   # cd /tests
+   # nosetests -v
