@@ -4,16 +4,16 @@ flask:
 
 aws:
     access_key: {{key "aws/access_key"}}
-    secret_access_key: "aws/secret_access_key"}}
+    secret_access_key: {{key "aws/secret_access_key"}}
     region: {{key "aws/region"}}
 
 sqs:
     retry_limit: {{key "sqs/retry_limit"}}
-    queue_name: {{key "sqs/queue_name"}}
+    queue_name: item
 
 sns:
     retry_limit: {{key "sns/retry_limit"}}
-    topic_name: {{key "sns/topic_name"}}
+    topic_name: widget
 
 service:
     max_attempts: {{key "service/max_attempts"}}
