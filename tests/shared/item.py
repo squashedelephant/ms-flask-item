@@ -15,5 +15,5 @@ class Item:
 
     @staticmethod
     def get_new_item():
-        fixture = '../../fixtures/item/new_item.json'
+        fixture = '/src/tests/fixtures/item/new_item.json'
         return Item._load_fixture(fixture)

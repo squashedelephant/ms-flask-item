@@ -14,6 +14,6 @@ but also tests shared resource separately.
 
 Execution strategy
 1) $ client/start.py -i
-2) $ docker exec -it services_ms-item_1 bash
+2) $ docker exec -it services_ms_item_1 bash
    # cd /tests
    # nosetests -v
