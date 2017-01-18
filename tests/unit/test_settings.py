@@ -21,25 +21,25 @@ class TestMain(TestCase):
             self.assertIn(ek, config['flask'])
 
     def test_03_aws_subkeys(self):
-        expected_keys = ['access_key', 'secret_access_key', 'region', 'sqs_retry_limit', 'sns_retry_limit']
+        expected_keys = ['access_key', 'secret_access_key', 'region']
         self.assertEqual(len(expected_keys), len(config['aws']))
         for ek in expected_keys:
             self.assertIn(ek, config['aws'])
 
     def test_04_sqs_subkeys(self):
-        expected_keys = ['retry_limit']
+        expected_keys = ['retry_limit', 'queue_name']
         self.assertEqual(len(expected_keys), len(config['sqs']))
         for ek in expected_keys:
             self.assertIn(ek, config['sqs'])
 
     def test_05_sns_subkeys(self):
-        expected_keys = ['retry_limit']
+        expected_keys = ['retry_limit', 'topic_name']
         self.assertEqual(len(expected_keys), len(config['sns']))
         for ek in expected_keys:
             self.assertIn(ek, config['sns'])
 
     def test_06_service_subkeys(self):
-        expected_keys = ['max_attempts', 'ms']
+        expected_keys = ['max_attempts']
         self.assertEqual(len(expected_keys), len(config['service']))
         for ek in expected_keys:
             self.assertIn(ek, config['service'])

@@ -3,6 +3,7 @@ from flask import jsonify, request
 from logging import getLogger
 from requests import ConnectionError, Session
 from ujson import loads
+from uuid import uuid4
 
 from app.common.settings import config
 from app.shared.cql import CQL

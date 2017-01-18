@@ -56,13 +56,10 @@ es:
                     index: {{key "ms_item/es/index_mappings/mappings/properties/sku/index"}}
                 cost:
                     type: {{key "ms_item/es/index_mappings/mappings/properties/cost/type"}}
-                    index: {{key "ms_item/es/index_mappings/mappings/properties/cost/index"}}
                 price:
                     type: {{key "ms_item/es/index_mappings/mappings/properties/price/type"}}
-                    index: {{key "ms_item/es/index_mappings/mappings/properties/price/index"}}
                 quantity:
                     type: {{key "ms_item/es/index_mappings/mappings/properties/quantity/type"}}
-                    index: {{key "ms_item/es/index_mappings/mappings/properties/quantity/index"}}
                 added:
                     type: {{key "ms_item/es/index_mappings/mappings/properties/added/type"}}
                     index: {{key "ms_item/es/index_mappings/mappings/properties/added/index"}}

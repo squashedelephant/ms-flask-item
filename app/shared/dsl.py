@@ -16,7 +16,7 @@ class DSL:
     def build_query_active(cls, offset=0, limit=1):
         return ({"from": offset,
                 "size": limit,
-                "query": {"match": {"deleted": False}}}
+                "query": {"match": {"deleted": False}}},
                 cls.columns)
 
     @classmethod
@@ -24,5 +24,5 @@ class DSL:
         return ({"from": offset,
                 "size": limit,
                 "query": {"match": {"item_id": item_id},
-                          "match": {"deleted": False}}}
+                          "match": {"deleted": False}}},
                 cls.columns)
